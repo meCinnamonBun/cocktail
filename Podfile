@@ -13,6 +13,7 @@ target 'Cocktails' do
   
   # UI
   pod 'SnapKit'
+  pod 'Kingfisher'
   
   # Requests
   pod 'Moya'
