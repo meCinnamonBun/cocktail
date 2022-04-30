@@ -12,6 +12,7 @@
 		494FD5C6281D594A00D52BA7 /* CocktailCategoryMocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FD5C5281D594A00D52BA7 /* CocktailCategoryMocker.swift */; };
 		494FD5C9281D637200D52BA7 /* UIView + extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FD5C8281D637200D52BA7 /* UIView + extensions.swift */; };
 		494FD5CC281D69A400D52BA7 /* CocktailsListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FD5CB281D69A400D52BA7 /* CocktailsListViewCell.swift */; };
+		494FD5CF281D869600D52BA7 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FD5CE281D869600D52BA7 /* R.generated.swift */; };
 		49A766852819856A00186709 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A766842819856A00186709 /* AppDelegate.swift */; };
 		49A766872819856A00186709 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A766862819856A00186709 /* SceneDelegate.swift */; };
 		49A7668E2819856C00186709 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49A7668D2819856C00186709 /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 		494FD5C5281D594A00D52BA7 /* CocktailCategoryMocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailCategoryMocker.swift; sourceTree = "<group>"; };
 		494FD5C8281D637200D52BA7 /* UIView + extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + extensions.swift"; sourceTree = "<group>"; };
 		494FD5CB281D69A400D52BA7 /* CocktailsListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsListViewCell.swift; sourceTree = "<group>"; };
+		494FD5CE281D869600D52BA7 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		49A766812819856A00186709 /* Cocktails.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cocktails.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49A766842819856A00186709 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49A766862819856A00186709 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				494FD5C1281D58B100D52BA7 /* Entities */,
 				49A766A22819903400186709 /* CocktailsList */,
 				49A766842819856A00186709 /* AppDelegate.swift */,
+				494FD5CE281D869600D52BA7 /* R.generated.swift */,
 				49A766862819856A00186709 /* SceneDelegate.swift */,
 				49A7668D2819856C00186709 /* Assets.xcassets */,
 				49A7668F2819856C00186709 /* LaunchScreen.storyboard */,
@@ -163,6 +166,7 @@
 			buildConfigurationList = 49A766952819856C00186709 /* Build configuration list for PBXNativeTarget "Cocktails" */;
 			buildPhases = (
 				26CE88B321BBC8E91FB6A693 /* [CP] Check Pods Manifest.lock */,
+				494FD5CD281D84A600D52BA7 /* R_Swift */,
 				49A7667D2819856A00186709 /* Sources */,
 				49A7667E2819856A00186709 /* Frameworks */,
 				49A7667F2819856A00186709 /* Resources */,
@@ -262,6 +266,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		494FD5CD281D84A600D52BA7 /* R_Swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = R_Swift;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/Cocktails/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/Cocktails/R.generated.swift\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -275,6 +299,7 @@
 				49A766A8281993B400186709 /* CocktailsListFabric.swift in Sources */,
 				494FD5C6281D594A00D52BA7 /* CocktailCategoryMocker.swift in Sources */,
 				494FD5C3281D58CF00D52BA7 /* Cocktail.swift in Sources */,
+				494FD5CF281D869600D52BA7 /* R.generated.swift in Sources */,
 				49A766A42819907300186709 /* CocktailsListRouter.swift in Sources */,
 				49A766852819856A00186709 /* AppDelegate.swift in Sources */,
 				49A766AA2819958600186709 /* CocktailsListPresenter.swift in Sources */,

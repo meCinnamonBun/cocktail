@@ -19,4 +19,7 @@ target 'Cocktails' do
   # Requests
   pod 'Moya'
 
+  # Utils
+  pod 'R.swift'
+  
 end

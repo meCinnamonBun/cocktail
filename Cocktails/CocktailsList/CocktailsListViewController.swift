@@ -19,7 +19,7 @@ class CocktailsListViewController: UIViewController, CocktailsListViewProtocol {
     private let _view: CocktailsListDisplayingViewProtocol?
     private let disposeBag: DisposeBag = .init()
     
-    private lazy var filterButton: UIBarButtonItem = .init(image: UIImage(named: "Filter"),
+    private lazy var filterButton: UIBarButtonItem = .init(image: R.image.filter(),
                                                            style: .plain,
                                                            target: nil,
                                                            action: nil)
