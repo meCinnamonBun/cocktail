@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import MBProgressHUD
 
 protocol CocktailsListDisplayingViewProtocol: UIView {
     func updateView(with cocktailCategories: [CocktailCategory])
@@ -58,11 +59,12 @@ final class CocktailsListView: UIView, CocktailsListDisplayingViewProtocol {
     }
     
     func startLoading() {
-        
+        let loadingNotification = MBProgressHUD.showAdded(to: self, animated: true)
+        loadingNotification.mode = MBProgressHUDMode.indeterminate
     }
     
     func stopLoading() {
-        
+        MBProgressHUD.hide(for: self, animated: true)
     }
 }
 
