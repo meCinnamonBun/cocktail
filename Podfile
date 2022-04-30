@@ -14,6 +14,7 @@ target 'Cocktails' do
   # UI
   pod 'SnapKit'
   pod 'Kingfisher'
+  pod 'MBProgressHUD'
   
   # Requests
   pod 'Moya'
