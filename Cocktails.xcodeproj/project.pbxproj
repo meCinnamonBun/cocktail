@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		494FD5C0281D588D00D52BA7 /* CocktailsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FD5BF281D588D00D52BA7 /* CocktailsListView.swift */; };
+		494FD5C3281D58CF00D52BA7 /* Cocktail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FD5C2281D58CF00D52BA7 /* Cocktail.swift */; };
+		494FD5C6281D594A00D52BA7 /* CocktailCategoryMocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FD5C5281D594A00D52BA7 /* CocktailCategoryMocker.swift */; };
 		49A766852819856A00186709 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A766842819856A00186709 /* AppDelegate.swift */; };
 		49A766872819856A00186709 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A766862819856A00186709 /* SceneDelegate.swift */; };
 		49A7668E2819856C00186709 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49A7668D2819856C00186709 /* Assets.xcassets */; };
@@ -20,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		494FD5BF281D588D00D52BA7 /* CocktailsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsListView.swift; sourceTree = "<group>"; };
+		494FD5C2281D58CF00D52BA7 /* Cocktail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cocktail.swift; sourceTree = "<group>"; };
+		494FD5C5281D594A00D52BA7 /* CocktailCategoryMocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailCategoryMocker.swift; sourceTree = "<group>"; };
 		49A766812819856A00186709 /* Cocktails.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cocktails.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49A766842819856A00186709 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49A766862819856A00186709 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +63,22 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		494FD5C1281D58B100D52BA7 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				494FD5C2281D58CF00D52BA7 /* Cocktail.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		494FD5C4281D593700D52BA7 /* Mockers */ = {
+			isa = PBXGroup;
+			children = (
+				494FD5C5281D594A00D52BA7 /* CocktailCategoryMocker.swift */,
+			);
+			path = Mockers;
+			sourceTree = "<group>";
+		};
 		49A766782819856A00186709 = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +100,8 @@
 		49A766832819856A00186709 /* Cocktails */ = {
 			isa = PBXGroup;
 			children = (
+				494FD5C4281D593700D52BA7 /* Mockers */,
+				494FD5C1281D58B100D52BA7 /* Entities */,
 				49A766A22819903400186709 /* CocktailsList */,
 				49A766842819856A00186709 /* AppDelegate.swift */,
 				49A766862819856A00186709 /* SceneDelegate.swift */,
@@ -96,6 +120,7 @@
 				49A766AB2819BCD700186709 /* CocktailsListInteractor.swift */,
 				49A766A92819958600186709 /* CocktailsListPresenter.swift */,
 				49A766A52819922600186709 /* CocktailsListViewController.swift */,
+				494FD5BF281D588D00D52BA7 /* CocktailsListView.swift */,
 			);
 			path = CocktailsList;
 			sourceTree = "<group>";
@@ -224,10 +249,13 @@
 			files = (
 				49A766A62819922600186709 /* CocktailsListViewController.swift in Sources */,
 				49A766A8281993B400186709 /* CocktailsListFabric.swift in Sources */,
+				494FD5C6281D594A00D52BA7 /* CocktailCategoryMocker.swift in Sources */,
+				494FD5C3281D58CF00D52BA7 /* Cocktail.swift in Sources */,
 				49A766A42819907300186709 /* CocktailsListRouter.swift in Sources */,
 				49A766852819856A00186709 /* AppDelegate.swift in Sources */,
 				49A766AA2819958600186709 /* CocktailsListPresenter.swift in Sources */,
 				49A766AC2819BCD700186709 /* CocktailsListInteractor.swift in Sources */,
+				494FD5C0281D588D00D52BA7 /* CocktailsListView.swift in Sources */,
 				49A766872819856A00186709 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
