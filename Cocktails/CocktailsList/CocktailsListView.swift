@@ -38,6 +38,8 @@ final class CocktailsListView: UIView, CocktailsListDisplayingViewProtocol {
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.register(CocktailsListViewCell.self, forCellReuseIdentifier: CocktailsListViewCell.reuiseId)
+        
         tableView.snp.makeConstraints { maker in
             maker.edges.equalToSuperview()
         }
@@ -81,11 +83,12 @@ extension CocktailsListView: UITableViewDelegate, UITableViewDataSource {
         let category = cocktailCategories[indexPath.section]
         let coctail = category.cocktails[indexPath.row]
         
-        let cell = UITableViewCell()
-        cell.imageView?.kf.setImage(with: coctail.imageUrl, completionHandler: { [weak cell] result in
-            cell?.setNeedsLayout()
-        })
-        cell.textLabel?.text = coctail.name
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CocktailsListViewCell.reuiseId) as? CocktailsListViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.loadImage(for: coctail.imageUrl)
+        cell.title = coctail.name
         
         return cell
     }
