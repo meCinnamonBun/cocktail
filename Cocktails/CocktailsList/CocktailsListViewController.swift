@@ -14,11 +14,15 @@ protocol CocktailsListViewProtocol: AnyObject {
 }
 
 class CocktailsListViewController: UIViewController, CocktailsListViewProtocol {
-    private let _view: CocktailsListDisplayingViewProtocol?
-    
     var presenter: CocktailsListPresenterProtocol
     
+    private let _view: CocktailsListDisplayingViewProtocol?
     private let disposeBag: DisposeBag = .init()
+    
+    private lazy var filterButton: UIBarButtonItem = .init(image: UIImage(named: "Filter"),
+                                                           style: .plain,
+                                                           target: nil,
+                                                           action: nil)
     
     init(presenter: CocktailsListPresenterProtocol) {
         self.presenter = presenter
@@ -43,6 +47,7 @@ class CocktailsListViewController: UIViewController, CocktailsListViewProtocol {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+        setupFilterButton()
     }
     
     private func setupBindings() {
@@ -51,5 +56,9 @@ class CocktailsListViewController: UIViewController, CocktailsListViewProtocol {
                 self?._view?.updateView(with: categories)
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func setupFilterButton() {
+        navigationItem.setRightBarButton(filterButton, animated: true)
     }
 }
