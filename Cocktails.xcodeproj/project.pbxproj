@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		494FD5C0281D588D00D52BA7 /* CocktailsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FD5BF281D588D00D52BA7 /* CocktailsListView.swift */; };
 		494FD5C3281D58CF00D52BA7 /* Cocktail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FD5C2281D58CF00D52BA7 /* Cocktail.swift */; };
-		494FD5C6281D594A00D52BA7 /* CocktailCategoryMocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FD5C5281D594A00D52BA7 /* CocktailCategoryMocker.swift */; };
+		494FD5C6281D594A00D52BA7 /* CocktailsGroupMocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FD5C5281D594A00D52BA7 /* CocktailsGroupMocker.swift */; };
 		494FD5C9281D637200D52BA7 /* UIView + extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FD5C8281D637200D52BA7 /* UIView + extensions.swift */; };
 		494FD5CC281D69A400D52BA7 /* CocktailsListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FD5CB281D69A400D52BA7 /* CocktailsListViewCell.swift */; };
 		494FD5CF281D869600D52BA7 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FD5CE281D869600D52BA7 /* R.generated.swift */; };
+		4986E585281E9B49002D9550 /* CocktailCategoriesMocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4986E584281E9B49002D9550 /* CocktailCategoriesMocker.swift */; };
 		49A766852819856A00186709 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A766842819856A00186709 /* AppDelegate.swift */; };
 		49A766872819856A00186709 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A766862819856A00186709 /* SceneDelegate.swift */; };
 		49A7668E2819856C00186709 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49A7668D2819856C00186709 /* Assets.xcassets */; };
@@ -28,10 +29,11 @@
 /* Begin PBXFileReference section */
 		494FD5BF281D588D00D52BA7 /* CocktailsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsListView.swift; sourceTree = "<group>"; };
 		494FD5C2281D58CF00D52BA7 /* Cocktail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cocktail.swift; sourceTree = "<group>"; };
-		494FD5C5281D594A00D52BA7 /* CocktailCategoryMocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailCategoryMocker.swift; sourceTree = "<group>"; };
+		494FD5C5281D594A00D52BA7 /* CocktailsGroupMocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsGroupMocker.swift; sourceTree = "<group>"; };
 		494FD5C8281D637200D52BA7 /* UIView + extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + extensions.swift"; sourceTree = "<group>"; };
 		494FD5CB281D69A400D52BA7 /* CocktailsListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsListViewCell.swift; sourceTree = "<group>"; };
 		494FD5CE281D869600D52BA7 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		4986E584281E9B49002D9550 /* CocktailCategoriesMocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailCategoriesMocker.swift; sourceTree = "<group>"; };
 		49A766812819856A00186709 /* Cocktails.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cocktails.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49A766842819856A00186709 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49A766862819856A00186709 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,7 +82,8 @@
 		494FD5C4281D593700D52BA7 /* Mockers */ = {
 			isa = PBXGroup;
 			children = (
-				494FD5C5281D594A00D52BA7 /* CocktailCategoryMocker.swift */,
+				494FD5C5281D594A00D52BA7 /* CocktailsGroupMocker.swift */,
+				4986E584281E9B49002D9550 /* CocktailCategoriesMocker.swift */,
 			);
 			path = Mockers;
 			sourceTree = "<group>";
@@ -297,10 +300,11 @@
 				49A766A62819922600186709 /* CocktailsListViewController.swift in Sources */,
 				494FD5CC281D69A400D52BA7 /* CocktailsListViewCell.swift in Sources */,
 				49A766A8281993B400186709 /* CocktailsListFabric.swift in Sources */,
-				494FD5C6281D594A00D52BA7 /* CocktailCategoryMocker.swift in Sources */,
+				494FD5C6281D594A00D52BA7 /* CocktailsGroupMocker.swift in Sources */,
 				494FD5C3281D58CF00D52BA7 /* Cocktail.swift in Sources */,
 				494FD5CF281D869600D52BA7 /* R.generated.swift in Sources */,
 				49A766A42819907300186709 /* CocktailsListRouter.swift in Sources */,
+				4986E585281E9B49002D9550 /* CocktailCategoriesMocker.swift in Sources */,
 				49A766852819856A00186709 /* AppDelegate.swift in Sources */,
 				49A766AA2819958600186709 /* CocktailsListPresenter.swift in Sources */,
 				49A766AC2819BCD700186709 /* CocktailsListInteractor.swift in Sources */,
