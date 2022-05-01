@@ -42,6 +42,12 @@ class CocktailsListViewController: UIViewController, CocktailsListViewProtocol {
         title = "Drinks"
         
         setupBindings()
+        
+        _view?.didReachBottom = { [weak self] in
+            self?.presenter.loadNextCategory.onNext(())
+        }
+        
+        _view?.startLoading()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,6 +60,16 @@ class CocktailsListViewController: UIViewController, CocktailsListViewProtocol {
         presenter.cocktailsCategories
             .drive(onNext: { [weak self] categories in
                 self?._view?.updateView(with: categories)
+            })
+            .disposed(by: disposeBag)
+        
+        presenter.isLoading
+            .drive(onNext: { [weak self] loading in
+                if loading {
+                    self?._view?.startLoading()
+                } else {
+                    self?._view?.stopLoading()
+                }
             })
             .disposed(by: disposeBag)
     }

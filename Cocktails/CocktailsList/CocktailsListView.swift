@@ -10,13 +10,15 @@ import SnapKit
 import MBProgressHUD
 
 protocol CocktailsListDisplayingViewProtocol: UIView {
-    func updateView(with cocktailCategories: [CocktailCategory])
+    var didReachBottom: (() -> ())? { set get }
+    
+    func updateView(with cocktailCategories: [CocktailsGroup])
     func startLoading()
     func stopLoading()
 }
 
 final class CocktailsListView: UIView, CocktailsListDisplayingViewProtocol {
-    private var cocktailCategories: [CocktailCategory] = []
+    private var cocktailCategories: [CocktailsGroup] = []
     
     private lazy var tableView: UITableView = {
         let view = UITableView()
@@ -53,7 +55,9 @@ final class CocktailsListView: UIView, CocktailsListDisplayingViewProtocol {
     
     // MARK: - CocktailsListDisplayingViewProtocol
     
-    func updateView(with cocktailCategories: [CocktailCategory]) {
+    var didReachBottom: (() -> ())?
+    
+    func updateView(with cocktailCategories: [CocktailsGroup]) {
         self.cocktailCategories = cocktailCategories
         tableView.reloadData()
     }
@@ -78,7 +82,7 @@ extension CocktailsListView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        cocktailCategories[section].name
+        cocktailCategories[section].categoryName
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -93,5 +97,14 @@ extension CocktailsListView: UITableViewDelegate, UITableViewDataSource {
         cell.title = coctail.name
         
         return cell
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let height = scrollView.frame.size.height
+        let contentOffset = scrollView.contentOffset.y
+        let distanceFromBottom = scrollView.contentSize.height - contentOffset
+        if distanceFromBottom < height {
+            didReachBottom?()
+        }
     }
 }
