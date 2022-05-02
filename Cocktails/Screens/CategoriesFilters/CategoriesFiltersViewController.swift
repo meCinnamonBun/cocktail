@@ -14,6 +14,8 @@ class CategoriesFiltersViewController: UIViewController {
     
     private let _view: CategoriesFiltersDisplayingViewProtocol?
     
+    private let disposeBag: DisposeBag = .init()
+    
     init(presenter: CategoriesFiltersPresenterProtocol) {
         self.presenter = presenter
         self._view = CategoriesFiltersView()
@@ -30,5 +32,17 @@ class CategoriesFiltersViewController: UIViewController {
     
     override func viewDidLoad() {
         title = "Filters"
+        
+        setupBindings()
+    }
+    
+    private func setupBindings() {
+        Observable.zip(presenter.allCategories.asObservable(),
+                       presenter.selectedCategories.asObservable())
+            .bind { [weak self] all, selected in
+                self?._view?.updateAllCategories(all)
+                self?._view?.setSelectedCategories(selected)
+            }
+            .disposed(by: disposeBag)
     }
 }

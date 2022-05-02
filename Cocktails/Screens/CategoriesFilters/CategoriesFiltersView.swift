@@ -9,13 +9,20 @@ import UIKit
 import SnapKit
 
 protocol CategoriesFiltersDisplayingViewProtocol: UIView {
-    
+    func updateAllCategories(_ categories: [CocktailCategory])
+    func setSelectedCategories(_ categories: [CocktailCategory])
 }
 
 final class CategoriesFiltersView: UIView, CategoriesFiltersDisplayingViewProtocol {
+    private var categories: [CocktailCategory] = []
+    
     private lazy var applyButton: UIButton = {
         let view = UIButton(type: .system)
         
+        view.layer.cornerRadius = 12
+        view.backgroundColor = .systemBlue
+        view.tintColor = .white
+        view.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
         view.setTitle("Apply Filters", for: .normal)
         
         return view
@@ -23,6 +30,8 @@ final class CategoriesFiltersView: UIView, CategoriesFiltersDisplayingViewProtoc
     
     private lazy var tableView: UITableView = {
         let view = UITableView()
+        
+        view.allowsMultipleSelection = true
         
         return view
     }()
@@ -57,7 +66,40 @@ final class CategoriesFiltersView: UIView, CategoriesFiltersDisplayingViewProtoc
         
         backgroundColor = .white
         
-//        tableView.delegate = self
-//        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.dataSource = self
     }
+    
+    // MARK: - CategoriesFiltersDisplayingViewProtocol
+    
+    func updateAllCategories(_ categories: [CocktailCategory]) {
+        self.categories = categories
+        tableView.reloadData()
+    }
+    
+    func setSelectedCategories(_ categories: [CocktailCategory]) {
+        categories.forEach { category in
+            guard let index = self.categories.firstIndex(where: { $0 == category }) else {
+                return
+            }
+            
+            tableView.selectRow(at: .init(row: index, section: 0), animated: true, scrollPosition: .none)
+        }
+    }
+}
+
+extension CategoriesFiltersView: UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        categories.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        
+        cell.textLabel?.text = categories[indexPath.row].displayingName
+        
+        return cell
+    }
+    
 }
