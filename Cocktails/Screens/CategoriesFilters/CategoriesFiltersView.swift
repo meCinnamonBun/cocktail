@@ -11,6 +11,10 @@ import SnapKit
 protocol CategoriesFiltersDisplayingViewProtocol: UIView {
     func updateAllCategories(_ categories: [CocktailCategory])
     func setSelectedCategories(_ categories: [CocktailCategory])
+    
+    var applyFilters: (() -> ())? { set get }
+    var didSelectCategory: ((CocktailCategory) -> ())? { set get }
+    var didDeselectCategory: ((CocktailCategory) -> ())? { set get }
 }
 
 final class CategoriesFiltersView: UIView, CategoriesFiltersDisplayingViewProtocol {
@@ -24,6 +28,7 @@ final class CategoriesFiltersView: UIView, CategoriesFiltersDisplayingViewProtoc
         view.tintColor = .white
         view.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
         view.setTitle("Apply Filters", for: .normal)
+        view.addTarget(self, action: #selector(didTapApllyButton), for: .touchUpInside)
         
         return view
     }()
@@ -70,7 +75,16 @@ final class CategoriesFiltersView: UIView, CategoriesFiltersDisplayingViewProtoc
         tableView.dataSource = self
     }
     
+    @objc
+    private func didTapApllyButton() {
+        applyFilters?()
+    }
+    
     // MARK: - CategoriesFiltersDisplayingViewProtocol
+    
+    var applyFilters: (() -> ())?
+    var didSelectCategory: ((CocktailCategory) -> ())?
+    var didDeselectCategory: ((CocktailCategory) -> ())?
     
     func updateAllCategories(_ categories: [CocktailCategory]) {
         self.categories = categories
@@ -102,4 +116,15 @@ extension CategoriesFiltersView: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let category = categories[indexPath.row]
+        
+        didSelectCategory?(category)
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let category = categories[indexPath.row]
+        
+        didDeselectCategory?(category)
+    }
 }

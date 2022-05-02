@@ -10,13 +10,13 @@ import RxSwift
 
 protocol CategoriesFiltersFabricProtocol: AnyObject {
     static func createViewController(with categories: [CocktailCategory],
-                                     selectedCategories: Observable<[CocktailCategory]>,
+                                     selectedCategories: [CocktailCategory],
                                      categoriesToSelect: AnyObserver<[CocktailCategory]>) -> UIViewController
 }
 
 class CategoriesFiltersFabric: CategoriesFiltersFabricProtocol {
     static func createViewController(with categories: [CocktailCategory],
-                                     selectedCategories: Observable<[CocktailCategory]>,
+                                     selectedCategories: [CocktailCategory],
                                      categoriesToSelect: AnyObserver<[CocktailCategory]>) -> UIViewController {
         let router: CategoriesFiltersRouter = .init()
         let interactor: CategoriesFiltersInteractor = .init(with: categories,

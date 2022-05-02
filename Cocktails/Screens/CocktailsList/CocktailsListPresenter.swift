@@ -76,42 +76,22 @@ class CocktailsListPresenter: CocktailsListPresenterProtocol {
         setupBindings()
     }
     
-    private func setupCocktailsBindings() {
-        let categoryToLoad = nextIndex
-            .withLatestFrom(filtredCategories) { ($0, $1) }
-            .compactMap { nextIndex, categories -> CocktailCategory? in
-                if nextIndex < categories.count {
-                    return categories[nextIndex]
-                }
-
-                return nil
+    private func setupBindings() {
+        setupCategoriesBindings()
+        setupCocktailsBindings()
+        
+        showFiltersSubject
+            .withLatestFrom(allCategories)
+            .withLatestFrom(categoriesToFilter) { ($0, $1) }
+            .bind { [unowned self] all, filtred in
+                router.openFiltersViewController(with: all,
+                                                 selectedCategories: filtred,
+                                                 categoriesToSelect: categoriesToFilter.asObserver())
             }
-        
-        categoryToLoad
-            .map { _ in return true }
-            .bind(to: isLoadingRelay)
-            .disposed(by: disposeBag)
-        
-        let loadedCategory = categoryToLoad
-            .flatMap { [unowned self] category -> Observable<CocktailsGroup> in
-                interactor.loadCocktails(for: category)
-            }
-            .withLatestFrom(cocktailsCategoriesRelay) { ($0, $1) }
-            .map { newGroup, groups -> [CocktailsGroup] in
-                var newGroups = groups
-                newGroups.append(newGroup)
-                return newGroups
-            }
-        
-        loadedCategory
-            .map { _ in return false }
-            .bind(to: isLoadingRelay)
-            .disposed(by: disposeBag)
-        
-        loadedCategory
-            .bind(to: cocktailsCategoriesRelay)
             .disposed(by: disposeBag)
     }
+    
+    private let categoryToLoad: BehaviorRelay<CocktailCategory?> = .init(value: nil)
     
     private func setupCategoriesBindings() {
         interactor
@@ -133,6 +113,11 @@ class CocktailsListPresenter: CocktailsListPresenterProtocol {
            .map { _ in 0 }
            .bind(to: nextIndex)
            .disposed(by: disposeBag)
+        
+        filtredCategories
+            .compactMap { $0.first }
+            .bind(to: categoryToLoad)
+            .disposed(by: disposeBag)
        
        filtredCategories
            .map { _ -> [CocktailsGroup] in [] }
@@ -146,17 +131,44 @@ class CocktailsListPresenter: CocktailsListPresenterProtocol {
            .disposed(by: disposeBag)
     }
     
-    private func setupBindings() {
-        setupCategoriesBindings()
-        setupCocktailsBindings()
-        
-        showFiltersSubject
-            .withLatestFrom(allCategories)
-            .bind { [unowned self] all in
-                router.openFiltersViewController(with: all,
-                                                 selectedCategories: categoriesToFilter.asObservable(),
-                                                 categoriesToSelect: categoriesToFilter.asObserver())
+    private func setupCocktailsBindings() {
+        nextIndex
+            .filter { $0 != 0 }
+            .withLatestFrom(filtredCategories) { ($0, $1) }
+            .compactMap { nextIndex, categories -> CocktailCategory? in
+                if nextIndex < categories.count {
+                    return categories[nextIndex]
+                }
+
+                return nil
             }
+            .bind(to: categoryToLoad)
+            .disposed(by: disposeBag)
+        
+        categoryToLoad
+            .map { _ in return true }
+            .bind(to: isLoadingRelay)
+            .disposed(by: disposeBag)
+        
+        let loadedCategory = categoryToLoad
+            .compactMap { $0 }
+            .flatMap { [unowned self] category -> Observable<CocktailsGroup> in
+                interactor.loadCocktails(for: category)
+            }
+            .withLatestFrom(cocktailsCategoriesRelay) { ($0, $1) }
+            .map { newGroup, groups -> [CocktailsGroup] in
+                var newGroups = groups
+                newGroups.append(newGroup)
+                return newGroups
+            }
+        
+        loadedCategory
+            .map { _ in return false }
+            .bind(to: isLoadingRelay)
+            .disposed(by: disposeBag)
+        
+        loadedCategory
+            .bind(to: cocktailsCategoriesRelay)
             .disposed(by: disposeBag)
     }
 }

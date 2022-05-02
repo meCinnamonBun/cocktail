@@ -20,17 +20,20 @@ class CategoriesFiltersInteractor: CategoriesFiltersInteractorProtocol {
     var allCategories: Observable<[CocktailCategory]> {
         allCategoriesRelay.asObservable()
     }
-    var selectedCategories: Observable<[CocktailCategory]>
+    var selectedCategories: Observable<[CocktailCategory]> {
+        selectedCategoriesRelay.asObservable()
+    }
     
     var categoriesToSelect: AnyObserver<[CocktailCategory]>
     
     private let allCategoriesRelay: BehaviorRelay<[CocktailCategory]>
+    private let selectedCategoriesRelay: BehaviorRelay<[CocktailCategory]>
     
     init(with categories: [CocktailCategory],
-         selectedCategories: Observable<[CocktailCategory]>,
+         selectedCategories: [CocktailCategory],
          categoriesToSelect: AnyObserver<[CocktailCategory]>) {
         self.allCategoriesRelay = .init(value: categories)
-        self.selectedCategories = selectedCategories
+        self.selectedCategoriesRelay = .init(value: selectedCategories)
         self.categoriesToSelect = categoriesToSelect
     }
 }

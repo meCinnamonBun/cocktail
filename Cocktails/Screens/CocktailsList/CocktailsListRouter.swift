@@ -10,7 +10,7 @@ import RxSwift
 
 protocol CocktailsListRouterProtocol: AnyObject {
     func openFiltersViewController(with categories: [CocktailCategory],
-                                   selectedCategories: Observable<[CocktailCategory]>,
+                                   selectedCategories: [CocktailCategory],
                                    categoriesToSelect: AnyObserver<[CocktailCategory]>)
 }
 
@@ -19,7 +19,7 @@ class CocktailsListRouter: CocktailsListRouterProtocol {
     weak var viewController: CocktailsListViewController?
     
     func openFiltersViewController(with categories: [CocktailCategory],
-                                   selectedCategories: Observable<[CocktailCategory]>,
+                                   selectedCategories: [CocktailCategory],
                                    categoriesToSelect: AnyObserver<[CocktailCategory]>) {
         let filtersViewController = CategoriesFiltersFabric.createViewController(with: categories,
                                                                                  selectedCategories: selectedCategories,

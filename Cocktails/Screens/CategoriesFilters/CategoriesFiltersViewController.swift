@@ -33,12 +33,25 @@ class CategoriesFiltersViewController: UIViewController {
     override func viewDidLoad() {
         title = "Filters"
         
+        setupViewCallbacks()
         setupBindings()
+    }
+    
+    private func setupViewCallbacks() {
+        _view?.applyFilters = { [weak self] in
+            self?.presenter.applyFilters.onNext(())
+        }
+        _view?.didSelectCategory = { [weak self] category in
+            self?.presenter.addCategoryToSelected.onNext(category)
+        }
+        _view?.didDeselectCategory = { [weak self] category in
+            self?.presenter.removeCategoryFromSelected.onNext(category)
+        }
     }
     
     private func setupBindings() {
         Observable.zip(presenter.allCategories.asObservable(),
-                       presenter.selectedCategories.asObservable())
+                       presenter.selectedStartCategories.asObservable())
             .bind { [weak self] all, selected in
                 self?._view?.updateAllCategories(all)
                 self?._view?.setSelectedCategories(selected)
