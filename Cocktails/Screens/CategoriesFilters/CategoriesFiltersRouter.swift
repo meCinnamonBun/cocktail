@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+protocol CategoriesFiltersRouterProtocol: AnyObject {
+    func close()
+}
+
+class CategoriesFiltersRouter: CategoriesFiltersRouterProtocol {
+    weak var viewController: CategoriesFiltersViewController?
+    
+    func close() {
+        viewController?.navigationController?.popViewController(animated: true)
+    }
+}
