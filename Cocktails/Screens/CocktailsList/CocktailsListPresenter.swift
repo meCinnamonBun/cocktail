@@ -10,8 +10,8 @@ import RxSwift
 import RxCocoa
 
 protocol CocktailsListPresenterProtocol: AnyObject {
-    var router: CocktailsListRouterProtocol { set get }
     var interactor: CocktailsListInteractorProtocol { set get }
+    var router: CocktailsListRouterProtocol { set get }
     
     // Inputs
     
