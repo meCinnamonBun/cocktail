@@ -19,6 +19,7 @@ protocol CategoriesFiltersDisplayingViewProtocol: UIView {
 
 final class CategoriesFiltersView: UIView, CategoriesFiltersDisplayingViewProtocol {
     private var categories: [CocktailCategory] = []
+    private var selectedCategories: [CocktailCategory] = []
     
     private lazy var applyButton: UIButton = {
         let view = UIButton(type: .system)
@@ -92,13 +93,7 @@ final class CategoriesFiltersView: UIView, CategoriesFiltersDisplayingViewProtoc
     }
     
     func setSelectedCategories(_ categories: [CocktailCategory]) {
-        categories.forEach { category in
-            guard let index = self.categories.firstIndex(where: { $0 == category }) else {
-                return
-            }
-            
-            tableView.selectRow(at: .init(row: index, section: 0), animated: true, scrollPosition: .none)
-        }
+        selectedCategories = categories
     }
 }
 
@@ -111,18 +106,36 @@ extension CategoriesFiltersView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         
-        cell.textLabel?.text = categories[indexPath.row].displayingName
+        let imageView = UIImageView(frame: .init(x: 0, y: 0, width: 15, height: 15))
+        imageView.image = R.image.checkMark()
+        
+        let category = categories[indexPath.row]
+        
+        cell.selectionStyle = .none
+        cell.textLabel?.text = category.displayingName
+        cell.accessoryView = imageView
+        
+        let isSelected = selectedCategories.contains(category)
+        
+        cell.accessoryView?.isHidden = !isSelected
+        cell.isSelected = isSelected
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.accessoryView?.isHidden = false
+        
         let category = categories[indexPath.row]
         
         didSelectCategory?(category)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.accessoryView?.isHidden = true
+        
         let category = categories[indexPath.row]
         
         didDeselectCategory?(category)
