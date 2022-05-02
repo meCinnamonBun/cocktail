@@ -9,11 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol CocktailsListViewProtocol: AnyObject {
-    
-}
-
-class CocktailsListViewController: UIViewController, CocktailsListViewProtocol {
+class CocktailsListViewController: UIViewController {
     var presenter: CocktailsListPresenterProtocol
     
     private let _view: CocktailsListDisplayingViewProtocol?
