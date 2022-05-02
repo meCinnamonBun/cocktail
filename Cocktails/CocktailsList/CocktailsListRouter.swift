@@ -6,16 +6,21 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol CocktailsListRouterProtocol: AnyObject {
-    func openFiltersViewController()
+    func openFiltersViewController(with categories: [CocktailCategory],
+                                   selectedCategories: Observable<[CocktailCategory]>,
+                                   categoriesToSelect: AnyObserver<[CocktailCategory]>)
 }
 
 class CocktailsListRouter: CocktailsListRouterProtocol {
     
     weak var viewController: CocktailsListViewController?
     
-    func openFiltersViewController() {
+    func openFiltersViewController(with categories: [CocktailCategory],
+                                   selectedCategories: Observable<[CocktailCategory]>,
+                                   categoriesToSelect: AnyObserver<[CocktailCategory]>) {
         let filtersViewController = UIViewController() // !!!
         viewController?.navigationController?.pushViewController(filtersViewController, animated: true)
     }

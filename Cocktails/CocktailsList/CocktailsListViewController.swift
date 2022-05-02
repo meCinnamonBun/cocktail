@@ -72,6 +72,10 @@ class CocktailsListViewController: UIViewController, CocktailsListViewProtocol {
                 }
             })
             .disposed(by: disposeBag)
+        
+        filterButton.rx.tap
+            .bind(to: presenter.showFilters)
+            .disposed(by: disposeBag)
     }
     
     private func setupFilterButton() {
