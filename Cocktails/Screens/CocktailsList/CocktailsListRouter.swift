@@ -21,7 +21,9 @@ class CocktailsListRouter: CocktailsListRouterProtocol {
     func openFiltersViewController(with categories: [CocktailCategory],
                                    selectedCategories: Observable<[CocktailCategory]>,
                                    categoriesToSelect: AnyObserver<[CocktailCategory]>) {
-        let filtersViewController = UIViewController() // !!!
+        let filtersViewController = CategoriesFiltersFabric.createViewController(with: categories,
+                                                                                 selectedCategories: selectedCategories,
+                                                                                 categoriesToSelect: categoriesToSelect)
         viewController?.navigationController?.pushViewController(filtersViewController, animated: true)
     }
 }
