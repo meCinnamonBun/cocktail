@@ -53,7 +53,7 @@ class CocktailsListPresenter: CocktailsListPresenterProtocol {
     private let showFiltersSubject: PublishSubject<Void> = .init()
     private let loadNextCategorySubject: PublishSubject<Void> = .init()
     
-    // Output Subjects
+    // Output Relays
     
     private let cocktailsCategoriesRelay: BehaviorRelay<[CocktailsGroup]> = .init(value: [])
     private let isLoadingRelay: PublishRelay<Bool> = .init()
