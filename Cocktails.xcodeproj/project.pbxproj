@@ -20,6 +20,7 @@
 		4986E58F281FF276002D9550 /* CategoriesFiltersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4986E58E281FF276002D9550 /* CategoriesFiltersPresenter.swift */; };
 		4986E591281FF282002D9550 /* CategoriesFiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4986E590281FF282002D9550 /* CategoriesFiltersViewController.swift */; };
 		4986E593281FF294002D9550 /* CategoriesFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4986E592281FF294002D9550 /* CategoriesFiltersView.swift */; };
+		4986E59828202EE2002D9550 /* BadgedBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4986E59728202EE2002D9550 /* BadgedBarButtonItem.swift */; };
 		49A766852819856A00186709 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A766842819856A00186709 /* AppDelegate.swift */; };
 		49A766872819856A00186709 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A766862819856A00186709 /* SceneDelegate.swift */; };
 		49A7668E2819856C00186709 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49A7668D2819856C00186709 /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 		4986E58E281FF276002D9550 /* CategoriesFiltersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesFiltersPresenter.swift; sourceTree = "<group>"; };
 		4986E590281FF282002D9550 /* CategoriesFiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesFiltersViewController.swift; sourceTree = "<group>"; };
 		4986E592281FF294002D9550 /* CategoriesFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesFiltersView.swift; sourceTree = "<group>"; };
+		4986E59728202EE2002D9550 /* BadgedBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgedBarButtonItem.swift; sourceTree = "<group>"; };
 		49A766812819856A00186709 /* Cocktails.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cocktails.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49A766842819856A00186709 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49A766862819856A00186709 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,15 @@
 			path = CategoriesFilters;
 			sourceTree = "<group>";
 		};
+		4986E59628202EC0002D9550 /* CommonUI */ = {
+			isa = PBXGroup;
+			children = (
+				494FD5CA281D699200D52BA7 /* Cells */,
+				4986E59728202EE2002D9550 /* BadgedBarButtonItem.swift */,
+			);
+			path = CommonUI;
+			sourceTree = "<group>";
+		};
 		49A766782819856A00186709 = {
 			isa = PBXGroup;
 			children = (
@@ -159,7 +170,7 @@
 		49A766832819856A00186709 /* Cocktails */ = {
 			isa = PBXGroup;
 			children = (
-				494FD5CA281D699200D52BA7 /* Cells */,
+				4986E59628202EC0002D9550 /* CommonUI */,
 				494FD5C1281D58B100D52BA7 /* Entities */,
 				4986E586281FEC05002D9550 /* Screens */,
 				494FD5C7281D635300D52BA7 /* Extensions */,
@@ -331,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				494FD5C9281D637200D52BA7 /* UIView + extensions.swift in Sources */,
+				4986E59828202EE2002D9550 /* BadgedBarButtonItem.swift in Sources */,
 				49A766A62819922600186709 /* CocktailsListViewController.swift in Sources */,
 				494FD5CC281D69A400D52BA7 /* CocktailsListViewCell.swift in Sources */,
 				49A766A8281993B400186709 /* CocktailsListFabric.swift in Sources */,
