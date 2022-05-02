@@ -22,6 +22,7 @@ protocol CocktailsListPresenterProtocol: AnyObject {
     
     var cocktailsCategories: Driver<[CocktailsGroup]> { get }
     var isLoading: Driver<Bool> { get }
+    var hasFilters: Driver<Bool> { get }
 }
 
 class CocktailsListPresenter: CocktailsListPresenterProtocol {
@@ -48,6 +49,10 @@ class CocktailsListPresenter: CocktailsListPresenterProtocol {
         isLoadingRelay.asDriver(onErrorDriveWith: .never())
     }
     
+    var hasFilters: Driver<Bool> {
+        hasFiltersRelay.asDriver(onErrorDriveWith: .never())
+    }
+    
     // Input Subjects
     
     private let showFiltersSubject: PublishSubject<Void> = .init()
@@ -57,6 +62,7 @@ class CocktailsListPresenter: CocktailsListPresenterProtocol {
     
     private let cocktailsCategoriesRelay: BehaviorRelay<[CocktailsGroup]> = .init(value: [])
     private let isLoadingRelay: PublishRelay<Bool> = .init()
+    private let hasFiltersRelay: PublishRelay<Bool> = .init()
     
     // Private properties
     
@@ -99,6 +105,11 @@ class CocktailsListPresenter: CocktailsListPresenterProtocol {
            .bind(to: allCategories)
            .disposed(by: disposeBag)
        
+        categoriesToFilter
+            .map { !$0.isEmpty }
+            .bind(to: hasFiltersRelay)
+            .disposed(by: disposeBag)
+        
        let changedCategories = Observable.combineLatest(allCategories, categoriesToFilter)
            .map { all, filter in
                filter.isEmpty ? all : filter

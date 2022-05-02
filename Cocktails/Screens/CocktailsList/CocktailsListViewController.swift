@@ -19,10 +19,10 @@ class CocktailsListViewController: UIViewController, CocktailsListViewProtocol {
     private let _view: CocktailsListDisplayingViewProtocol?
     private let disposeBag: DisposeBag = .init()
     
-    private lazy var filterButton: UIBarButtonItem = .init(image: R.image.filter(),
-                                                           style: .plain,
-                                                           target: nil,
-                                                           action: nil)
+    private lazy var filterButton: BadgedBarButtonItem = .init(image: R.image.filter(),
+                                                               style: .plain,
+                                                               target: nil,
+                                                               action: nil)
     
     init(presenter: CocktailsListPresenterProtocol) {
         self.presenter = presenter
@@ -75,6 +75,16 @@ class CocktailsListViewController: UIViewController, CocktailsListViewProtocol {
         
         filterButton.rx.tap
             .bind(to: presenter.showFilters)
+            .disposed(by: disposeBag)
+        
+        presenter.hasFilters
+            .drive(onNext: { [weak self] flag in
+                if flag {
+                    self?.filterButton.addBadge()
+                } else {
+                    self?.filterButton.removeBadge()
+                }
+            })
             .disposed(by: disposeBag)
     }
     
