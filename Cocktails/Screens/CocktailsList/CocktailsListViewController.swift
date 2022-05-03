@@ -42,8 +42,6 @@ class CocktailsListViewController: UIViewController {
         _view?.didReachBottom = { [weak self] in
             self?.presenter.loadNextCategory.onNext(())
         }
-        
-        _view?.startLoading()
     }
     
     override func viewWillAppear(_ animated: Bool) {
