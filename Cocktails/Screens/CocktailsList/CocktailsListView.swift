@@ -93,6 +93,8 @@ extension CocktailsListView: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
+        cell.dropImage()
+        
         if let url = cocktail.imageUrl {
             cell.loadImage(for: url)
         }

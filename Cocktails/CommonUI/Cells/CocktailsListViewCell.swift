@@ -78,10 +78,14 @@ class CocktailsListViewCell: UITableViewCell {
         }
     }
     
-    func loadImage(for url: URL) {
+    func dropImage() {
         iconView.image = nil
         iconView.backgroundColor = .systemGray5
         noImageTitleLabel.isHidden = false
+    }
+    
+    func loadImage(for url: URL) {
+        dropImage()
         iconView.kf.setImage(with: url, completionHandler: { [weak self] _ in
             self?.iconView.backgroundColor = nil
             self?.noImageTitleLabel.isHidden = true
