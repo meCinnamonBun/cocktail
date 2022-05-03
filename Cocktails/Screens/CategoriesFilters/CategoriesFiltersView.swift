@@ -132,7 +132,7 @@ extension CategoriesFiltersView: UITableViewDelegate, UITableViewDataSource {
         let category = categories[indexPath.row]
         
         cell.selectionStyle = .none
-        cell.textLabel?.text = category.displayingName
+        cell.textLabel?.text = category.name
         cell.accessoryView = imageView
         
         let isSelected = selectedStartCategories.contains(category)

@@ -18,10 +18,9 @@ struct Cocktail {
 }
 
 struct CocktailCategory: Equatable {
-    var displayingName: String
-    var APIName: String
+    var name: String
     
     static func == (lhs: CocktailCategory, rhs: CocktailCategory) -> Bool {
-        lhs.APIName == rhs.APIName
+        lhs.name == rhs.name
     }
 }
