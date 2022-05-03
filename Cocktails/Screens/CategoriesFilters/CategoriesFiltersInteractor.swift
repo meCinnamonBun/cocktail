@@ -17,6 +17,8 @@ protocol CategoriesFiltersInteractorProtocol: AnyObject {
 }
 
 class CategoriesFiltersInteractor: CategoriesFiltersInteractorProtocol {
+    // MARK: - CategoriesFiltersInteractorProtocol
+    
     var allCategories: Observable<[CocktailCategory]> {
         allCategoriesRelay.asObservable()
     }
@@ -26,8 +28,12 @@ class CategoriesFiltersInteractor: CategoriesFiltersInteractorProtocol {
     
     var categoriesToSelect: AnyObserver<[CocktailCategory]>
     
+    // MARK: - Private Properties
+    
     private let allCategoriesRelay: BehaviorRelay<[CocktailCategory]>
     private let selectedCategoriesRelay: BehaviorRelay<[CocktailCategory]>
+    
+    // MARK: - LifeCycle
     
     init(with categories: [CocktailCategory],
          selectedCategories: [CocktailCategory],

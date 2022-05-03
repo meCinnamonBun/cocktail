@@ -20,11 +20,15 @@ protocol CocktailsListDisplayingViewProtocol: UIView {
 final class CocktailsListView: UIView, CocktailsListDisplayingViewProtocol {
     private var cocktailCategories: [CocktailsGroup] = []
     
+    // MARK: - UI
+    
     private lazy var tableView: UITableView = {
         let view = UITableView()
         
         return view
     }()
+    
+    // MARK: - LifeCycle
     
     init() {
         super.init(frame: .zero)
@@ -35,6 +39,8 @@ final class CocktailsListView: UIView, CocktailsListDisplayingViewProtocol {
     required init?(coder: NSCoder) {
         fatalError(Errors.noInitCoder.description)
     }
+    
+    // MARK: - Private methods
     
     private func setupSubviews() {
         addSubview(tableView)
@@ -71,6 +77,8 @@ final class CocktailsListView: UIView, CocktailsListDisplayingViewProtocol {
         MBProgressHUD.hide(for: self, animated: true)
     }
 }
+
+// MARK: - UITableView
 
 extension CocktailsListView: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {

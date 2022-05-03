@@ -35,6 +35,8 @@ extension BadgedBarButtonItem {
     }
 }
 
+// MARK: - Constants
+
 private extension CGFloat {
     static let badgeDiameter: CGFloat = 8
 }

@@ -14,6 +14,8 @@ protocol CategoriesFiltersRouterProtocol: AnyObject {
 class CategoriesFiltersRouter: CategoriesFiltersRouterProtocol {
     weak var viewController: CategoriesFiltersViewController?
     
+    // MARK: - CategoriesFiltersRouterProtocol
+    
     func close() {
         viewController?.navigationController?.popViewController(animated: true)
     }

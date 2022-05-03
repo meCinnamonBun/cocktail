@@ -16,6 +16,8 @@ class CategoriesFiltersViewController: UIViewController {
     
     private let disposeBag: DisposeBag = .init()
     
+    // MARK: - Lifecycle
+    
     init(presenter: CategoriesFiltersPresenterProtocol) {
         self.presenter = presenter
         self._view = CategoriesFiltersView()
@@ -36,6 +38,8 @@ class CategoriesFiltersViewController: UIViewController {
         setupViewCallbacks()
         setupBindings()
     }
+    
+    // MARK: - Private Methods
     
     private func setupViewCallbacks() {
         _view?.applyFilters = { [weak self] in
@@ -59,6 +63,8 @@ class CategoriesFiltersViewController: UIViewController {
             .disposed(by: disposeBag)
     }
 }
+
+// MARK: - Constants
 
 private extension String {
     static let title: String = "Filters"

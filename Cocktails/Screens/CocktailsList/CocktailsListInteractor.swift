@@ -16,6 +16,8 @@ protocol CocktailsListInteractorProtocol: AnyObject {
 class CocktailsListInteractor: CocktailsListInteractorProtocol {
     private let api: CocktailAPI = .init()
     
+    // MARK: - CocktailsListInteractorProtocol Methods
+    
     func loadCategories() -> Observable<[CocktailCategory]> {
         api.getCategories()
             .map { categories -> [CocktailCategory] in

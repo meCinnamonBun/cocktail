@@ -13,12 +13,12 @@ protocol CocktailsListPresenterProtocol: AnyObject {
     var interactor: CocktailsListInteractorProtocol { set get }
     var router: CocktailsListRouterProtocol { set get }
     
-    // Inputs
+    // MARK: - Inputs
     
     var showFilters: AnyObserver<Void> { get }
     var loadNextCategory: AnyObserver<Void> { get }
     
-    // Outputs
+    // MARK: - Outputs
     
     var cocktailsCategories: Driver<[CocktailsGroup]> { get }
     var isLoading: Driver<Bool> { get }
@@ -26,10 +26,12 @@ protocol CocktailsListPresenterProtocol: AnyObject {
 }
 
 class CocktailsListPresenter: CocktailsListPresenterProtocol {
+    // MARK: - CocktailsListPresenterProtocol
+    
     var interactor: CocktailsListInteractorProtocol
     var router: CocktailsListRouterProtocol
     
-    // Inputs
+    // MARK: - CocktailsListPresenterProtocol Inputs
     
     var showFilters: AnyObserver<Void> {
         showFiltersSubject.asObserver()
@@ -39,7 +41,7 @@ class CocktailsListPresenter: CocktailsListPresenterProtocol {
         loadNextCategorySubject.asObserver()
     }
     
-    // Outputs
+    // MARK: - CocktailsListPresenterProtocol Outputs
     
     var cocktailsCategories: Driver<[CocktailsGroup]> {
         cocktailsCategoriesRelay.asDriver(onErrorJustReturn: [])
@@ -53,26 +55,29 @@ class CocktailsListPresenter: CocktailsListPresenterProtocol {
         hasFiltersRelay.asDriver(onErrorDriveWith: .never())
     }
     
-    // Input Subjects
+    // MARK: - Input Subjects
     
     private let showFiltersSubject: PublishSubject<Void> = .init()
     private let loadNextCategorySubject: PublishSubject<Void> = .init()
     
-    // Output Relays
+    // MARK: - Output Relays
     
     private let cocktailsCategoriesRelay: BehaviorRelay<[CocktailsGroup]> = .init(value: [])
     private let isLoadingRelay: PublishRelay<Bool> = .init()
     private let hasFiltersRelay: PublishRelay<Bool> = .init()
     
-    // Private properties
+    // MARK: - Private properties
     
     private let allCategories: BehaviorRelay<[CocktailCategory]> = .init(value: [])
     private let filtredCategories: BehaviorRelay<[CocktailCategory]> = .init(value: [])
     private var nextIndex: BehaviorRelay<Int> = .init(value: 0)
     
     private let categoriesToFilter: BehaviorSubject<[CocktailCategory]> = .init(value: [])
+    private let categoryToLoad: BehaviorRelay<CocktailCategory?> = .init(value: nil)
     
     private let disposeBag: DisposeBag = .init()
+    
+    // MARK: - LifeCycle
     
     init(router: CocktailsListRouterProtocol,
          interactor: CocktailsListInteractorProtocol) {
@@ -81,6 +86,8 @@ class CocktailsListPresenter: CocktailsListPresenterProtocol {
         
         setupBindings()
     }
+    
+    // MARK: - Private methods
     
     private func setupBindings() {
         setupCategoriesBindings()
@@ -96,8 +103,6 @@ class CocktailsListPresenter: CocktailsListPresenterProtocol {
             }
             .disposed(by: disposeBag)
     }
-    
-    private let categoryToLoad: BehaviorRelay<CocktailCategory?> = .init(value: nil)
     
     private func setupCategoriesBindings() {
         interactor

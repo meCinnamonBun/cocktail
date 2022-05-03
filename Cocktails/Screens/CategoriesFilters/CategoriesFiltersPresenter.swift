@@ -12,11 +12,13 @@ protocol CategoriesFiltersPresenterProtocol: AnyObject {
     var interactor: CategoriesFiltersInteractorProtocol { set get }
     var router: CategoriesFiltersRouterProtocol { set get }
     
-    // Output
+    // MARK: - Output
+    
     var allCategories: Driver<[CocktailCategory]> { get }
     var selectedStartCategories: Driver<[CocktailCategory]> { get }
     
-    // Input
+    // MARK: - Input
+    
     var applyFilters: AnyObserver<Void> { get }
     
     var addCategoryToSelected: AnyObserver<CocktailCategory> { get }
@@ -24,10 +26,13 @@ protocol CategoriesFiltersPresenterProtocol: AnyObject {
 }
 
 class CategoriesFiltersPresenter: CategoriesFiltersPresenterProtocol {
+    // MARK: - CategoriesFiltersPresenterProtocol
+    
     var interactor: CategoriesFiltersInteractorProtocol
     var router: CategoriesFiltersRouterProtocol
     
-    // Inputs
+    // MARK: - CategoriesFiltersPresenterProtocol Inputs
+    
     var applyFilters: AnyObserver<Void> {
         applyFiltersSubject.asObserver()
     }
@@ -39,7 +44,8 @@ class CategoriesFiltersPresenter: CategoriesFiltersPresenterProtocol {
         removeCategoryFromSelectedSubject.asObserver()
     }
     
-    // Outputs
+    // MARK: - CategoriesFiltersPresenterProtocol Outputs
+    
     var allCategories: Driver<[CocktailCategory]>{
         allCategoriesRelay.asDriver(onErrorDriveWith: .empty())
     }
@@ -47,14 +53,14 @@ class CategoriesFiltersPresenter: CategoriesFiltersPresenterProtocol {
         selectedStartCategoriesRelay.asDriver(onErrorDriveWith: .empty())
     }
     
-    // Input Subjects
+    // MARK: - Input Subjects
     
     var applyFiltersSubject: PublishSubject<Void> = .init()
     
     var addCategoryToSelectedSubject: PublishSubject<CocktailCategory> = .init()
     var removeCategoryFromSelectedSubject: PublishSubject<CocktailCategory> = .init()
     
-    // Output Relays
+    // MARK: - Output Relays
     
     private let allCategoriesRelay: BehaviorRelay<[CocktailCategory]> = .init(value: [])
     private let selectedStartCategoriesRelay: BehaviorRelay<[CocktailCategory]> = .init(value: [])
@@ -63,6 +69,8 @@ class CategoriesFiltersPresenter: CategoriesFiltersPresenterProtocol {
     
     private let disposeBag: DisposeBag = .init()
     
+    // MARK: - LifeCycle
+    
     init(interactor: CategoriesFiltersInteractor,
          router: CategoriesFiltersRouter) {
         self.interactor = interactor
@@ -70,6 +78,8 @@ class CategoriesFiltersPresenter: CategoriesFiltersPresenterProtocol {
         
         setupBindings()
     }
+    
+    // MARK: - Private Methods
     
     private func setupBindings() {
         interactor.allCategories

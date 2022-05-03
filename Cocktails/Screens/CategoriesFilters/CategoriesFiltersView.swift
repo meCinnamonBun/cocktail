@@ -21,6 +21,8 @@ final class CategoriesFiltersView: UIView, CategoriesFiltersDisplayingViewProtoc
     private var categories: [CocktailCategory] = []
     private var selectedStartCategories: [CocktailCategory] = []
     
+    // MARK: - UI
+    
     private lazy var applyButton: UIButton = {
         let view = UIButton(type: .system)
         
@@ -42,6 +44,8 @@ final class CategoriesFiltersView: UIView, CategoriesFiltersDisplayingViewProtoc
         return view
     }()
     
+    // MARK: - LifeCycle
+    
     init() {
         super.init(frame: .zero)
         
@@ -51,6 +55,8 @@ final class CategoriesFiltersView: UIView, CategoriesFiltersDisplayingViewProtoc
     required init?(coder: NSCoder) {
         fatalError(Errors.noInitCoder.description)
     }
+    
+    // MARK: - Private Methods
     
     private func setupSubviews() {
         addSubviews(tableView, applyButton)
@@ -109,6 +115,8 @@ final class CategoriesFiltersView: UIView, CategoriesFiltersDisplayingViewProtoc
     }
 }
 
+// MARK: - UITableView
+
 extension CategoriesFiltersView: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -152,6 +160,8 @@ extension CategoriesFiltersView: UITableViewDelegate, UITableViewDataSource {
         didDeselectCategory?(category)
     }
 }
+
+// MARK: - Constants
 
 private extension CGFloat {
     static let buttonBottomOffset: CGFloat = 64
