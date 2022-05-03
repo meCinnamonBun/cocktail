@@ -22,7 +22,7 @@ class CocktailsListInteractor: CocktailsListInteractorProtocol {
         api.getCategories()
             .map { categories -> [CocktailCategory] in
                 categories.map { category -> CocktailCategory in
-                    .init(name: category.strCategory)
+                    .init(name: category.categoryName)
                 }
             }
     }
@@ -31,7 +31,7 @@ class CocktailsListInteractor: CocktailsListInteractorProtocol {
         api.getCocktails(for: category.name)
             .map { cocktails -> CocktailsGroup in
                 let ct = cocktails.map { cocktail -> Cocktail in
-                    return .init(name: cocktail.strDrink, imageUrl: URL(string: cocktail.strDrinkThumb))
+                    return .init(name: cocktail.drinkName, imageUrl: URL(string: cocktail.imageUrl))
                 }
                 
                 return .init(categoryName: category.name, cocktails: ct)

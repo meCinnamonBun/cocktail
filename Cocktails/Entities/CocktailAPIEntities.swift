@@ -8,11 +8,21 @@
 import Foundation
 
 struct CocktailAPICategory: Codable {
-    var strCategory: String
+    var categoryName: String
+    
+    enum CodingKeys: String, CodingKey {
+        case categoryName = "strCategory"
+    }
 }
 
 struct CocktailAPIDrinkShortInfo: Codable {
-    var strDrink: String
-    var strDrinkThumb: String
+    var drinkName: String
+    var imageUrl: String
     var idDrink: String
+    
+    enum CodingKeys: String, CodingKey {
+        case drinkName = "strDrink"
+        case imageUrl = "strDrinkThumb"
+        case idDrink
+    }
 }
