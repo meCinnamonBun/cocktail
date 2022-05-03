@@ -14,13 +14,13 @@ enum CocktailAPIPaths {
 
 extension CocktailAPIPaths: TargetType {
     var baseURL: URL {
-        let mainURL = CocktailAPI.mainURL
+        let mainUrl = CocktailAPI.mainUrl
         let apiKey = CocktailAPI.APIKey
         
-        let strURL = "\(mainURL)/\(apiKey)"
+        let strUrl = "\(mainUrl)/\(apiKey)"
         
-        guard let baseURL = URL(string: strURL) else {
-            fatalError(Errors.incorrectURL.description)
+        guard let baseURL = URL(string: strUrl) else {
+            fatalError(Errors.incorrectUrl.description)
         }
         return baseURL
     }

@@ -18,6 +18,8 @@ class CocktailsListRouter: CocktailsListRouterProtocol {
     
     weak var viewController: CocktailsListViewController?
     
+    // MARK: - CocktailsListRouterProtocol Methods
+    
     func openFiltersViewController(with categories: [CocktailCategory],
                                    selectedCategories: [CocktailCategory],
                                    categoriesToSelect: AnyObserver<[CocktailCategory]>) {

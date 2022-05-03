@@ -22,7 +22,7 @@
 		4986E593281FF294002D9550 /* CategoriesFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4986E592281FF294002D9550 /* CategoriesFiltersView.swift */; };
 		4986E59828202EE2002D9550 /* BadgedBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4986E59728202EE2002D9550 /* BadgedBarButtonItem.swift */; };
 		4986E59B28212738002D9550 /* CocktailAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4986E59A28212738002D9550 /* CocktailAPI.swift */; };
-		4986E59D2821348A002D9550 /* CocktailAPIEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4986E59C2821348A002D9550 /* CocktailAPIEntities.swift */; };
+		4986E59D2821348A002D9550 /* CocktailApiEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4986E59C2821348A002D9550 /* CocktailApiEntities.swift */; };
 		4986E59F282134B4002D9550 /* CocktailAPIPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4986E59E282134B4002D9550 /* CocktailAPIPaths.swift */; };
 		4986E5A12821588B002D9550 /* CGFloat + extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4986E5A02821588B002D9550 /* CGFloat + extensions.swift */; };
 		4986E5A428215E85002D9550 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4986E5A328215E85002D9550 /* Errors.swift */; };
@@ -54,7 +54,7 @@
 		4986E592281FF294002D9550 /* CategoriesFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesFiltersView.swift; sourceTree = "<group>"; };
 		4986E59728202EE2002D9550 /* BadgedBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgedBarButtonItem.swift; sourceTree = "<group>"; };
 		4986E59A28212738002D9550 /* CocktailAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailAPI.swift; sourceTree = "<group>"; };
-		4986E59C2821348A002D9550 /* CocktailAPIEntities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailAPIEntities.swift; sourceTree = "<group>"; };
+		4986E59C2821348A002D9550 /* CocktailApiEntities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailApiEntities.swift; sourceTree = "<group>"; };
 		4986E59E282134B4002D9550 /* CocktailAPIPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailAPIPaths.swift; sourceTree = "<group>"; };
 		4986E5A02821588B002D9550 /* CGFloat + extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat + extensions.swift"; sourceTree = "<group>"; };
 		4986E5A328215E85002D9550 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -99,7 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				494FD5C2281D58CF00D52BA7 /* Cocktail.swift */,
-				4986E59C2821348A002D9550 /* CocktailAPIEntities.swift */,
+				4986E59C2821348A002D9550 /* CocktailApiEntities.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -372,7 +372,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4986E59D2821348A002D9550 /* CocktailAPIEntities.swift in Sources */,
+				4986E59D2821348A002D9550 /* CocktailApiEntities.swift in Sources */,
 				494FD5C9281D637200D52BA7 /* UIView + extensions.swift in Sources */,
 				4986E59828202EE2002D9550 /* BadgedBarButtonItem.swift in Sources */,
 				49A766A62819922600186709 /* CocktailsListViewController.swift in Sources */,

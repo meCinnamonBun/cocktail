@@ -16,23 +16,25 @@ protocol CocktailsListInteractorProtocol: AnyObject {
 class CocktailsListInteractor: CocktailsListInteractorProtocol {
     private let api: CocktailAPI = .init()
     
+    // MARK: - CocktailsListInteractorProtocol Methods
+    
     func loadCategories() -> Observable<[CocktailCategory]> {
         api.getCategories()
             .map { categories -> [CocktailCategory] in
                 categories.map { category -> CocktailCategory in
-                    .init(displayingName: category.strCategory, APIName: category.strCategory)
+                    .init(name: category.categoryName)
                 }
             }
     }
     
     func loadCocktails(for category: CocktailCategory) -> Observable<CocktailsGroup> {
-        api.getCocktails(for: category.APIName)
+        api.getCocktails(for: category.name)
             .map { cocktails -> CocktailsGroup in
                 let ct = cocktails.map { cocktail -> Cocktail in
-                    return .init(name: cocktail.strDrink, imageUrl: URL(string: cocktail.strDrinkThumb))
+                    return .init(name: cocktail.drinkName, imageUrl: URL(string: cocktail.imageUrl))
                 }
                 
-                return .init(categoryName: category.displayingName, cocktails: ct)
+                return .init(categoryName: category.name, cocktails: ct)
             }
     }
 }

@@ -11,6 +11,8 @@ import Kingfisher
 class CocktailsListViewCell: UITableViewCell {
     static let reuiseId: String = "CocktailsListViewCell"
     
+    // MARK: - Computed Properties
+    
     var title: String? {
         get {
             titleLabel.text
@@ -18,6 +20,8 @@ class CocktailsListViewCell: UITableViewCell {
             titleLabel.text = newValue
         }
     }
+    
+    // MARK: - UI
     
     private lazy var iconView: UIImageView = {
         let view: UIImageView = .init()
@@ -46,6 +50,8 @@ class CocktailsListViewCell: UITableViewCell {
         return view
     }()
     
+    // MARK: - LifeCycle
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -55,6 +61,8 @@ class CocktailsListViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError(Errors.noInitCoder.description)
     }
+    
+    // MARK: - Private Methods
     
     private func setupView() {
         contentView.addSubviews(titleLabel, iconView, noImageTitleLabel)
@@ -78,6 +86,8 @@ class CocktailsListViewCell: UITableViewCell {
         }
     }
     
+    // MARK: - Public Methods
+    
     func dropImage() {
         iconView.image = nil
         iconView.backgroundColor = .systemGray5
@@ -92,6 +102,8 @@ class CocktailsListViewCell: UITableViewCell {
         })
     }
 }
+
+// MARK: - Constants
 
 private extension CGFloat {
     static let iconWidth: CGFloat = 52

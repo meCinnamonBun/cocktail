@@ -20,6 +20,8 @@ class CocktailsListViewController: UIViewController {
                                                                target: nil,
                                                                action: nil)
     
+    // MARK: - LifeCycle
+    
     init(presenter: CocktailsListPresenterProtocol) {
         self.presenter = presenter
         self._view = CocktailsListView()
@@ -38,16 +40,21 @@ class CocktailsListViewController: UIViewController {
         title = .title
         
         setupBindings()
-        
-        _view?.didReachBottom = { [weak self] in
-            self?.presenter.loadNextCategory.onNext(())
-        }
+        setupViewCallbacks()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
         setupFilterButton()
+    }
+    
+    // MARK: - Private methods
+    
+    private func setupViewCallbacks() {
+        _view?.didReachBottom = { [weak self] in
+            self?.presenter.loadNextCategory.onNext(())
+        }
     }
     
     private func setupBindings() {
@@ -86,6 +93,8 @@ class CocktailsListViewController: UIViewController {
         navigationItem.setRightBarButton(filterButton, animated: true)
     }
 }
+
+// MARK: - Constants
 
 private extension String {
     static let title: String = "Drinks"
