@@ -16,7 +16,7 @@ protocol CocktailAPIProtocol {
 }
 
 class CocktailAPI: CocktailAPIProtocol {
-    static let mainURL = "https://www.thecocktaildb.com/api/json/v1"
+    static let mainUrl = "https://www.thecocktaildb.com/api/json/v1"
     static let APIKey = "1"
     
     private static let mainKeyPath: String = "drinks"

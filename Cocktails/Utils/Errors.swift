@@ -8,12 +8,12 @@
 import Foundation
 
 enum Errors {
-    case incorrectURL
+    case incorrectUrl
     case noInitCoder
     
     var description: String {
         switch self {
-        case .incorrectURL:
+        case .incorrectUrl:
             return "Incorrect baseURL"
         case .noInitCoder:
             return "init(coder:) has not been implemented"
