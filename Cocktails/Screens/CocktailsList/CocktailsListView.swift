@@ -33,7 +33,7 @@ final class CocktailsListView: UIView, CocktailsListDisplayingViewProtocol {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Errors.noInitCoder.description)
     }
     
     private func setupSubviews() {

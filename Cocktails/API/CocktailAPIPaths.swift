@@ -20,7 +20,7 @@ extension CocktailAPIPaths: TargetType {
         let strURL = "\(mainURL)/\(apiKey)"
         
         guard let baseURL = URL(string: strURL) else {
-             fatalError("Incorrect baseURL")
+            fatalError(Errors.incorrectURL.description)
         }
         return baseURL
     }

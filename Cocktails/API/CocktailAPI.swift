@@ -19,12 +19,14 @@ class CocktailAPI: CocktailAPIProtocol {
     static let mainURL = "https://www.thecocktaildb.com/api/json/v1"
     static let APIKey = "1"
     
+    private static let mainKeyPath: String = "drinks"
+    
     private lazy var provider: MoyaProvider<CocktailAPIPaths> = .init()
     
     func getCategories() -> Observable<[CocktailAPICategory]> {
         provider.rx
             .request(.getCategories)
-            .map([CocktailAPICategory].self, atKeyPath: "drinks")
+            .map([CocktailAPICategory].self, atKeyPath: Self.mainKeyPath)
             .catchAndReturn([])
             .asObservable()
     }
@@ -32,7 +34,7 @@ class CocktailAPI: CocktailAPIProtocol {
     func getCocktails(for category: String) -> Observable<[CocktailAPIDrinkShortInfo]> {
         provider.rx
             .request(.getCocktails(category: category))
-            .map([CocktailAPIDrinkShortInfo].self, atKeyPath: "drinks")
+            .map([CocktailAPIDrinkShortInfo].self, atKeyPath: Self.mainKeyPath)
             .catchAndReturn([])
             .asObservable()
     }

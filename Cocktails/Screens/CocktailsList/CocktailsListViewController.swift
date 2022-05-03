@@ -27,7 +27,7 @@ class CocktailsListViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Errors.noInitCoder.description)
     }
     
     override func loadView() {
@@ -35,7 +35,7 @@ class CocktailsListViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        title = "Drinks"
+        title = .title
         
         setupBindings()
         
@@ -85,4 +85,8 @@ class CocktailsListViewController: UIViewController {
     private func setupFilterButton() {
         navigationItem.setRightBarButton(filterButton, animated: true)
     }
+}
+
+private extension String {
+    static let title: String = "Drinks"
 }

@@ -24,11 +24,11 @@ final class CategoriesFiltersView: UIView, CategoriesFiltersDisplayingViewProtoc
     private lazy var applyButton: UIButton = {
         let view = UIButton(type: .system)
         
-        view.layer.cornerRadius = 12
+        view.layer.cornerRadius = .buttonCornerRadius
         view.backgroundColor = .systemBlue
         view.tintColor = .white
-        view.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
-        view.setTitle("Apply Filters", for: .normal)
+        view.titleLabel?.font = .systemFont(ofSize: CGFloat.fontSizeMedium, weight: .semibold)
+        view.setTitle(.buttonTitle, for: .normal)
         view.addTarget(self, action: #selector(didTapApllyButton), for: .touchUpInside)
         
         return view
@@ -49,7 +49,7 @@ final class CategoriesFiltersView: UIView, CategoriesFiltersDisplayingViewProtoc
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Errors.noInitCoder.description)
     }
     
     private func setupSubviews() {
@@ -64,10 +64,10 @@ final class CategoriesFiltersView: UIView, CategoriesFiltersDisplayingViewProtoc
         }
         
         applyButton.snp.makeConstraints { maker in
-            maker.left.right.equalToSuperview().inset(16)
-            maker.bottom.equalToSuperview().inset(48)
+            maker.left.right.equalToSuperview().inset(CGFloat.sizeM)
+            maker.bottom.equalToSuperview().inset(CGFloat.buttonBottomOffset)
             maker.top.equalTo(tableView.snp.bottom)
-            maker.height.equalTo(50)
+            maker.height.equalTo(CGFloat.buttonHeight)
         }
         
         backgroundColor = .white
@@ -118,7 +118,7 @@ extension CategoriesFiltersView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         
-        let imageView = UIImageView(frame: .init(x: 0, y: 0, width: 15, height: 15))
+        let imageView = UIImageView(frame: .init(x: 0, y: 0, width: .iconWidth, height: .iconWidth))
         imageView.image = R.image.checkMark()
         
         let category = categories[indexPath.row]
@@ -151,4 +151,16 @@ extension CategoriesFiltersView: UITableViewDelegate, UITableViewDataSource {
         
         didDeselectCategory?(category)
     }
+}
+
+private extension CGFloat {
+    static let buttonBottomOffset: CGFloat = 64
+    static let buttonCornerRadius: CGFloat = 12
+    static let buttonHeight: CGFloat = 50
+    
+    static let iconWidth: CGFloat = 15
+}
+
+private extension String {
+    static let buttonTitle: String = "Apply Filters"
 }

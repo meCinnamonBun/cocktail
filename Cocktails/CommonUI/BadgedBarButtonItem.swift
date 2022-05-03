@@ -17,8 +17,8 @@ extension BadgedBarButtonItem {
         guard let view = self.value(forKey: "view") as? UIView else { return }
         badgeLayer?.removeFromSuperlayer()
         
-        let badge = CAShapeLayer()
-        let diameter = CGFloat(8)
+        let badge: CAShapeLayer = .init()
+        let diameter: CGFloat = .badgeDiameter
         
         badge.path = UIBezierPath(roundedRect: .init(x: view.frame.width - (diameter + offset.x) - diameter / 2,
                                                      y: (diameter + offset.y),
@@ -33,4 +33,8 @@ extension BadgedBarButtonItem {
     func removeBadge() {
         badgeLayer?.removeFromSuperlayer()
     }
+}
+
+private extension CGFloat {
+    static let badgeDiameter: CGFloat = 8
 }

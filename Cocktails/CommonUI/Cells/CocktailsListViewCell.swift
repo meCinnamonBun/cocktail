@@ -30,9 +30,9 @@ class CocktailsListViewCell: UITableViewCell {
     private lazy var noImageTitleLabel: UILabel = {
         let view: UILabel = .init()
         
-        view.font = .systemFont(ofSize: 9, weight: .semibold)
+        view.font = .systemFont(ofSize: .fontSizeSmall, weight: .semibold)
         view.textColor = .darkGray
-        view.text = "Cocktails"
+        view.text = .noImageTitle
         view.textAlignment = .center
         
         return view
@@ -41,7 +41,7 @@ class CocktailsListViewCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let view: UILabel = .init()
         
-        view.font = .systemFont(ofSize: 17)
+        view.font = .systemFont(ofSize: .fontSizeMedium)
         
         return view
     }()
@@ -53,28 +53,28 @@ class CocktailsListViewCell: UITableViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Errors.noInitCoder.description)
     }
     
     private func setupView() {
         contentView.addSubviews(titleLabel, iconView, noImageTitleLabel)
         
         iconView.snp.makeConstraints { maker in
-            maker.left.equalToSuperview().inset(16)
-            maker.top.bottom.equalToSuperview().inset(10)
-            maker.height.width.equalTo(52)
+            maker.left.equalToSuperview().inset(CGFloat.sizeM)
+            maker.top.bottom.equalToSuperview().inset(CGFloat.iconOffset)
+            maker.height.width.equalTo(CGFloat.iconWidth)
         }
         
         titleLabel.snp.makeConstraints { maker in
-            maker.left.equalTo(iconView.snp.right).offset(10)
-            maker.right.equalToSuperview().inset(16)
+            maker.left.equalTo(iconView.snp.right).offset(CGFloat.iconOffset)
+            maker.right.equalToSuperview().inset(CGFloat.sizeM)
             maker.centerY.equalToSuperview()
         }
         
         noImageTitleLabel.snp.makeConstraints { maker in
             maker.centerY.equalTo(iconView)
-            maker.left.equalTo(iconView).offset(4)
-            maker.right.equalTo(iconView).inset(4)
+            maker.left.equalTo(iconView).offset(CGFloat.sizeS)
+            maker.right.equalTo(iconView).inset(CGFloat.sizeS)
         }
     }
     
@@ -91,4 +91,13 @@ class CocktailsListViewCell: UITableViewCell {
             self?.noImageTitleLabel.isHidden = true
         })
     }
+}
+
+private extension CGFloat {
+    static let iconWidth: CGFloat = 52
+    static let iconOffset: CGFloat = 10
+}
+
+private extension String {
+    static let noImageTitle: String = "Cocktails"
 }

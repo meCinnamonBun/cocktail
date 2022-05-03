@@ -23,7 +23,7 @@ class CategoriesFiltersViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Errors.noInitCoder.description)
     }
     
     override func loadView() {
@@ -31,7 +31,7 @@ class CategoriesFiltersViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        title = "Filters"
+        title = .title
         
         setupViewCallbacks()
         setupBindings()
@@ -58,4 +58,8 @@ class CategoriesFiltersViewController: UIViewController {
             }
             .disposed(by: disposeBag)
     }
+}
+
+private extension String {
+    static let title: String = "Filters"
 }
