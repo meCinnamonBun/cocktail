@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CocktailAPICategory: Codable {
+struct CocktailApiCategory: Codable {
     var categoryName: String
     
     enum CodingKeys: String, CodingKey {
@@ -15,7 +15,7 @@ struct CocktailAPICategory: Codable {
     }
 }
 
-struct CocktailAPIDrinkShortInfo: Codable {
+struct CocktailApiDrinkShortInfo: Codable {
     var drinkName: String
     var imageUrl: String
     var idDrink: String
