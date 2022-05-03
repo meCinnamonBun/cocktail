@@ -14,7 +14,7 @@ struct CocktailsGroup {
 
 struct Cocktail {
     var name: String
-    var imageUrl: URL
+    var imageUrl: URL?
 }
 
 struct CocktailCategory: Equatable {

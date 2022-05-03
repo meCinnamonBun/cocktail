@@ -87,14 +87,17 @@ extension CocktailsListView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let category = cocktailCategories[indexPath.section]
-        let coctail = category.cocktails[indexPath.row]
+        let cocktail = category.cocktails[indexPath.row]
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CocktailsListViewCell.reuiseId) as? CocktailsListViewCell else {
             return UITableViewCell()
         }
         
-        cell.loadImage(for: coctail.imageUrl)
-        cell.title = coctail.name
+        if let url = cocktail.imageUrl {
+            cell.loadImage(for: url)
+        }
+        
+        cell.title = cocktail.name
         
         return cell
     }
