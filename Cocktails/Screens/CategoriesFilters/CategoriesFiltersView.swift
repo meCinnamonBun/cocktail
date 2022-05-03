@@ -19,7 +19,7 @@ protocol CategoriesFiltersDisplayingViewProtocol: UIView {
 
 final class CategoriesFiltersView: UIView, CategoriesFiltersDisplayingViewProtocol {
     private var categories: [CocktailCategory] = []
-    private var selectedCategories: [CocktailCategory] = []
+    private var selectedStartCategories: [CocktailCategory] = []
     
     private lazy var applyButton: UIButton = {
         let view = UIButton(type: .system)
@@ -93,7 +93,19 @@ final class CategoriesFiltersView: UIView, CategoriesFiltersDisplayingViewProtoc
     }
     
     func setSelectedCategories(_ categories: [CocktailCategory]) {
-        selectedCategories = categories
+        selectedStartCategories = categories
+        categories.forEach { category in
+            guard let index = self.categories.firstIndex(where: { $0 == category }) else {
+                return
+            }
+            
+            let indexPath: IndexPath = .init(row: index, section: 0)
+            
+            let cell = tableView.cellForRow(at: indexPath)
+            cell?.accessoryView?.isHidden = false
+            
+            tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+        }
     }
 }
 
@@ -115,10 +127,9 @@ extension CategoriesFiltersView: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = category.displayingName
         cell.accessoryView = imageView
         
-        let isSelected = selectedCategories.contains(category)
+        let isSelected = selectedStartCategories.contains(category)
         
         cell.accessoryView?.isHidden = !isSelected
-        cell.isSelected = isSelected
         
         return cell
     }
