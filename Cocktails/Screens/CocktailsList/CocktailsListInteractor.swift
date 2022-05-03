@@ -14,20 +14,25 @@ protocol CocktailsListInteractorProtocol: AnyObject {
 }
 
 class CocktailsListInteractor: CocktailsListInteractorProtocol {
+    private let api: CocktailAPI = .init()
+    
     func loadCategories() -> Observable<[CocktailCategory]> {
-        CocktailCategoriesMocker.loadCategoriesFromNetwork()
-            .map { stringCategories -> [CocktailCategory] in
-                stringCategories.map { stringCategory -> CocktailCategory in
-                    .init(displayingName: stringCategory, APIName: stringCategory)
+        api.getCategories()
+            .map { categories -> [CocktailCategory] in
+                categories.map { category -> CocktailCategory in
+                    .init(displayingName: category.strCategory, APIName: category.strCategory)
                 }
             }
-            .asObservable()
     }
     
     func loadCocktails(for category: CocktailCategory) -> Observable<CocktailsGroup> {
-        CocktailCategoriesMocker.loadCocktailsFromNetwork()
-            .map { stringCocktails -> CocktailsGroup in
-                CocktailsGroupMocker.generateEmptyNameCategory(for: stringCocktails, and: category.displayingName)
+        api.getCocktails(for: category.APIName)
+            .map { cocktails -> CocktailsGroup in
+                let ct = cocktails.map { cocktail -> Cocktail in
+                    return .init(name: cocktail.strDrink, imageUrl: URL(string: cocktail.strDrinkThumb))
+                }
+                
+                return .init(categoryName: category.displayingName, cocktails: ct)
             }
     }
 }
